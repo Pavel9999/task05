@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+
+
+//Формирует таблицу в зависимости от типа юзера и типа запроса
 @WebServlet(urlPatterns = {"/cars"})
 public class CarsServlet extends HttpServlet {
 
@@ -39,6 +42,8 @@ public class CarsServlet extends HttpServlet {
         }
     }
 
+
+    //обработка запроса гостья
     void getGuestRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String req_type = req.getParameter("req_type");
 
@@ -52,7 +57,7 @@ public class CarsServlet extends HttpServlet {
             default: break;
         }
     }
-
+//обработка запроса пользователя
     void getClientRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String req_type = req.getParameter("req_type");
 
@@ -69,6 +74,7 @@ public class CarsServlet extends HttpServlet {
             default: break;
         }
     }
+//обработка запроса менеджера
 
     void getManagerRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String req_type = req.getParameter("req_type");
@@ -83,7 +89,7 @@ public class CarsServlet extends HttpServlet {
             default: break;
         }
     }
-
+//роль гостья выводит все машины
     void getGuestAllRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Car> cars = RentcarDAO.SelectAllCars();
@@ -94,7 +100,7 @@ public class CarsServlet extends HttpServlet {
 
         req.getRequestDispatcher("WEB-INF/pages/guest_cars.jsp").forward(req, resp);
     }
-
+//роль гость выводит свободные машины
     void getGuestFreeRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Car> cars = RentcarDAO.SelectFreeCars();
@@ -106,6 +112,8 @@ public class CarsServlet extends HttpServlet {
         req.getRequestDispatcher("WEB-INF/pages/guest_cars.jsp").forward(req, resp);
     }
 
+
+//добавляет атрибуты ФИО
     HttpServletRequest packClientData(HttpServletRequest req)
     {
         String email = (String)getServletContext().getAttribute("email");
@@ -119,7 +127,7 @@ public class CarsServlet extends HttpServlet {
 
         return req;
     }
-
+//тип пользователя регистр пользователь все машины
     void getClientAllRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Car> cars = RentcarDAO.SelectAllCars();
@@ -132,7 +140,7 @@ public class CarsServlet extends HttpServlet {
 
         req.getRequestDispatcher("WEB-INF/pages/client_cars.jsp").forward(req, resp);
     }
-
+//тип пользователь регист свободные машины
     void getClientFreeRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Car> cars = RentcarDAO.SelectFreeCars();
@@ -145,7 +153,7 @@ public class CarsServlet extends HttpServlet {
 
         req.getRequestDispatcher("WEB-INF/pages/client_cars.jsp").forward(req, resp);
     }
-
+//тип регистрированный пользователь машины кот. будут арендованы
     void getClientRentedRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String email = (String)getServletContext().getAttribute("email");
@@ -160,7 +168,7 @@ public class CarsServlet extends HttpServlet {
         req.getRequestDispatcher("WEB-INF/pages/client_cars_in_rent.jsp").forward(req, resp);
     }
 
-
+//тип менеджер все неподтв контракты
     void getManagerUnconfirmedRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
@@ -174,7 +182,7 @@ public class CarsServlet extends HttpServlet {
 
         req.getRequestDispatcher("WEB-INF/pages/manager_cars.jsp").forward(req, resp);
     }
-
+//тип менеджер все активные контракты  его
     void getManagerRentedRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String email = (String)getServletContext().getAttribute("email");

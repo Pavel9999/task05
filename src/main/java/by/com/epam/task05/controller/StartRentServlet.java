@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+//выполняет аренд автомобиля и перенаправляет на страницу арендованных автомобилей
 @WebServlet(urlPatterns = {"/start_rent_client"})
 public class StartRentServlet extends HttpServlet {
 

@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+
+//Отменяет аренду пользователя пользователь
+
 @WebServlet(urlPatterns = {"/cancel_rent_client"})
 public class CancelRentServlet extends HttpServlet {
 
